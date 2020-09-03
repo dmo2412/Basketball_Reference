@@ -7,7 +7,7 @@ import shutil
 from xlsxwriter import Workbook
 
 class App:
-    def __init__(self, path='/Users/dannymorgan/Desktop/MastersStats', email='djmorgan2412@gmail.com', password='dmo1993'):
+    def __init__(self, path='/Users/dannymorgan/Desktop/MastersStats', email='djmorgan2412@gmail.com', password=''):
         if not os.path.exists(path):
             os.mkdir(path)
 
