@@ -7,7 +7,7 @@ import shutil
 from xlsxwriter import Workbook
 
 class App:
-    def __init__(self, path='/Users/dannymorgan/Desktop/MastersStats', email='djmorgan2412@gmail.com', password=''):
+    def __init__(self, path='/Users/dannymorgan/Desktop/MastersStats', email='djmorgan2412@gmail.com', password='dmo1993'):
         if not os.path.exists(path):
             os.mkdir(path)
 
@@ -54,18 +54,70 @@ class App:
     def go_to_masters(self):
         self.driver.get(self.first_url + self.years[0] + self.second_url)
         # Iterate over the years here and call functions
-        self.select_stats()
+        self.select_header()
     
-    def select_stats(self):
+    def select_header(self):
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-        all_stats = soup.find_all('td')
-        # print(all_stats)
-        # data = all_stats.text
-        # soup = BeautifulSoup(data, 'html.parser')
-        for tag in all_stats:
-            print(tag.text)
-            break
-        # a_tags = soup.find_all('a', class_='result-title')
+        all_stats = soup.find_all('tr')
+        i = 0
+        stats = all_stats[5]
+        # while i < 10:
+        #     print(stats[i])
+        arr = []
+        for stat in stats:
+            word= str(stat)
+            start = word.find('">') + 2
+            end = word.find("</td>") - 4
+            
+            first = int(start)
+            last = int(end)
+            arr.append(word[start:end])
+        while("" in arr):
+            arr.remove("")
+        
+        workbook = Workbook(os.path.join(self.path, 'test_file5.xlsx'))
+        worksheet = workbook.add_worksheet()
+        
+        while i < len(arr):
+            worksheet.write(0,i, arr[i])
+            i += 1
+        
+        # workbook.close()
+        # k = 6
+        # while k < 12:
+        #     stats = all_stats[k]
+        #     array = []
+        #     # for stat in stats:
+        #     #     word = str(stat)
+        #     #     start = word.find('">') + 2
+        #     #     end = word.find("</td>") - 4
+        #     #     array.append(word[start:end])
+        #     # print(array)
+        #     print(stats)
+        #     k += 1
+        # print(all_stats[6])
+        k = 6
+        row = 1
+        while k < 25:
+            col = 0
+            for stat in all_stats[k]:
+                word = str(stat)
+                if "href" in word:
+                    end = word.find("</a>")
+                    start = word.find("=go") + 5
+                else:
+                    start = word.find('">') + 2
+                    end = word.find("</td>")
+                xl = word[start:end]
+                worksheet.write(row, col, xl)
+                col += 1
+            k += 1
+            row += 1
+        workbook.close()
+        
+
+
+
         
      
     
