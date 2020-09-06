@@ -1,25 +1,28 @@
-from selenium import webdriver
-from bs4 import BeautifulSoup
-from time import sleep
-import os
-import requests
-import shutil
-from xlsxwriter import Workbook
 import xlsxwriter as xw
+from xlsxwriter import Workbook
+import shutil
+import requests
+import os
+from time import sleep
+from bs4 import BeautifulSoup
+from selenium import webdriver
+
+
 
 class App:
     def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='', password=''):
         if not os.path.exists(path):
             os.mkdir(path)
 
-        self.path = path 
+        self.path = path
         self.email = email
         self.password = password
-        self.years = [str(i) for i in range(2010,2020)]
+        self.years = [str(i) for i in range(2010, 2020)]
         self.first_url = "https://www.golfstats.com/search/?box="
-        self.second_url = "&tournament=Masters&player=&tour=Majors&submit=go"
+        self.second_url = "&tournament=British+Open&player=&tour=Majors&submit=go"
         self.real_url = "https://www.golfstats.com/"
-        self.driver = webdriver.Chrome('/Users/dannymorgan/Downloads/chromedriver')
+        self.driver = webdriver.Chrome(
+            '/Users/dannymorgan/Downloads/chromedriver')
         self.driver.get(self.real_url)
         self.workbook = Workbook(os.path.join(self.path, 'test_file5.xlsx'))
 
@@ -29,11 +32,14 @@ class App:
         self.go_to_masters()
 
     def login(self):
-        clicker = self.driver.find_element_by_xpath("//a[@class='manage button-green']")
+        clicker = self.driver.find_element_by_xpath(
+            "//a[@class='manage button-green']")
         clicker.click()
-        enter_email = self.driver.find_element_by_xpath("//input[@id='user_login']")
+        enter_email = self.driver.find_element_by_xpath(
+            "//input[@id='user_login']")
         enter_email.send_keys(self.email)
-        enter_pass = self.driver.find_element_by_xpath("//input[@id='user_pass']")
+        enter_pass = self.driver.find_element_by_xpath(
+            "//input[@id='user_pass']")
         enter_pass.send_keys(self.password)
         remember = self.driver.find_element_by_xpath(
             "//input[@id='rememberme']")
@@ -41,9 +47,9 @@ class App:
         sign_in = self.driver.find_element_by_xpath("//input[@id='wp-submit']")
         sign_in.click()
 
-
     def go_to_masters(self):
-        workbook = xw.Workbook(os.path.join(self.path, 'masters_stats_2010_to_2019.xlsx'))
+        workbook = xw.Workbook(os.path.join(
+            self.path, 'open_championship_stats_2010_to_2019.xlsx'))
         worksheet = workbook.add_worksheet()
         i = -1
         x = 1
@@ -57,7 +63,7 @@ class App:
             sleep(1)
             x += 45
         workbook.close()
-    
+
     def select_header(self, worksheet, workbook):
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         all_stats = soup.find_all('tr')
@@ -65,18 +71,18 @@ class App:
         stats = all_stats[5]
         arr = []
         for stat in stats:
-            word= str(stat)
+            word = str(stat)
             start = word.find('">') + 2
             end = word.find("</td>") - 4
-            
+
             arr.append(word[start:end])
         while("" in arr):
             arr.remove("")
-        
+
         while i < len(arr):
-            worksheet.write(0,i, arr[i])
+            worksheet.write(0, i, arr[i])
             i += 1
-        
+            #Change this to select your own header names instead of scraping them
 
     def next_year(self, worksheet, row):
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
@@ -98,25 +104,24 @@ class App:
                     xl = xl[2:end]
                 if xl == "E":
                     xl = 0
-                
+
                 try:
                     if xl.startswith('$'):
-                        
+
                         xl = xl[1:end]
-                        
+
                         eles = list(map(str, xl))
-                        
+
                         number = ""
                         for el in eles:
                             if el != ",":
                                 number += el
-                        
+
                         xl = float(number)
-                        
+
                 except AttributeError:
                     pass
-                
-                    
+
                 try:
                     xl = float(xl)
                     worksheet.write_number(row, col, xl)
@@ -128,7 +133,7 @@ class App:
 
     def format_xl(self, xl, start, end):
         if xl.startswith('T-'):
-                    xl = xl[2:end]
+            xl = xl[2:end]
         if xl == "E":
             xl = 0
         try:
@@ -140,8 +145,9 @@ class App:
                 print(float(xl))
         except AttributeError:
             pass
-        
+
         return xl
+
 
 if __name__ == '__main__':
     app = App()
