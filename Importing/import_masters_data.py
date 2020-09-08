@@ -10,10 +10,10 @@ xl_file = pd.ExcelFile('/Users/dannymorgan/Desktop/Masters_stats/masters_stats_2
 
 stats = xl_file.parse('Sheet1')
 
-db_uri = 'sqlite:///testing1.db'
+db_uri = 'sqlite:///testing2.db'
 engine = create_engine(db_uri, echo=False)
 
-sample_db = stats.to_sql('testingdb1', con=engine)
+sample_db = stats.to_sql('testingdb2', con=engine)
 # sample_sql
-sample_sql = engine.execute("SELECT * FROM testing1.db").fetchall()
+sample_sql = engine.execute("SELECT * FROM testing2.db").fetchall()
 print(sample_sql)

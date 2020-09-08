@@ -40,10 +40,11 @@ class App:
         remember.click()
         sign_in = self.driver.find_element_by_xpath("//input[@id='wp-submit']")
         sign_in.click()
+        sleep(30)
 
 
     def go_to_masters(self):
-        workbook = xw.Workbook(os.path.join(self.path, 'masters_stats_2010_to_2019.xlsx'))
+        workbook = xw.Workbook(os.path.join(self.path, 'masters_stats_2010_to_2019_human_verification.xlsx'))
         worksheet = workbook.add_worksheet()
         i = -1
         x = 1

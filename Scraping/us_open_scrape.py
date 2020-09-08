@@ -48,7 +48,7 @@ class App:
 
     def go_to_masters(self):
         workbook = xw.Workbook(os.path.join(
-            self.path, 'us_open_stats_2010_to_2019.xlsx'))
+            self.path, 'us_open_stats_2010_to_2019_2.xlsx'))
         worksheet = workbook.add_worksheet()
         i = -1
         x = 1
