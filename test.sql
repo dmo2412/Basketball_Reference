@@ -1,3 +1,5 @@
+DROP TABLE pga_test2;
+
 CREATE TABLE pga_test2
 (
     year int,
@@ -33,8 +35,10 @@ CREATE TABLE pga_test2
     other smallint
 );
 
-COPY pga_test2(year, player, finish, round_1_score, round_2_score, round_3_score, round_4_score, total_score, score_to_par, money, place_after_first, place_after_second, place_after_third, place_after_fourth, fairways_hit, fairways_rank, driving_distance, driving_distance_rank, greens_hit, greens_hit_rank, avg_putts, total_putts, putts_rank, par_3s, par_4s, par_5s, eagles, birdies, pars, bogeys, other)
-FROM '/Users
-/dannymorgan/Desktop/Masters_stats/pga.csv'
-DELIMITER ','
-CSV Header;
+-- COPY pga_test2(year, player, finish, round_1_score, round_2_score, round_3_score, round_4_score, total_score, score_to_par, money, place_after_first, place_after_second, place_after_third, place_after_fourth, fairways_hit, fairways_rank, driving_distance, driving_distance_rank, greens_hit, greens_hit_rank, avg_putts, total_putts, putts_rank, par_3s, par_4s, par_5s, eagles, birdies, pars, bogeys, other)
+-- FROM '/Users
+-- /dannymorgan/Desktop/Masters_stats/pga.csv'
+-- DELIMITER ','
+-- CSV Header;
+copy pga_test2 from '/Users/dannymorgan/Desktop/Masters_stats/usopentest.csv'
+DELIMITER ',' CSV HEADER;
