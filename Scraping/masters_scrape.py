@@ -8,7 +8,7 @@ from xlsxwriter import Workbook
 import xlsxwriter as xw
 
 class App:
-    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='', password=''):
+    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='', password=''):  #Enter your own email and password and change the path to your destination
         if not os.path.exists(path):
             os.mkdir(path)
 
@@ -19,7 +19,7 @@ class App:
         self.first_url = "https://www.golfstats.com/search/?box="
         self.second_url = "&tournament=Masters&player=&tour=Majors&submit=go"
         self.real_url = "https://www.golfstats.com/"
-        self.driver = webdriver.Chrome('/Users/dannymorgan/Downloads/chromedriver')
+        self.driver = webdriver.Chrome('/Users/dannymorgan/Downloads/chromedriver') #Change this path to your own chromedriver path
         self.driver.get(self.real_url)
         self.workbook = Workbook(os.path.join(self.path, 'test_file5.xlsx'))
 
@@ -40,11 +40,11 @@ class App:
         remember.click()
         sign_in = self.driver.find_element_by_xpath("//input[@id='wp-submit']")
         sign_in.click()
-        sleep(30)
+        sleep(3)
 
 
     def go_to_masters(self):
-        workbook = xw.Workbook(os.path.join(self.path, 'masters_stats_2010_to_2019_human_verification.xlsx'))
+        workbook = xw.Workbook(os.path.join(self.path, 'masters_stats_2010_to_2019_test.xlsx')) #Change this file name to save the file under your desired name
         worksheet = workbook.add_worksheet()
         i = -1
         x = 1
@@ -77,7 +77,7 @@ class App:
         while i < len(arr):
             worksheet.write(0,i, arr[i])
             i += 1
-            #Change this to select your own header names instead of scraping them
+            
         
 
     def next_year(self, worksheet, row):
