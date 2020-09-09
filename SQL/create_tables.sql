@@ -1,8 +1,3 @@
-DROP TABLE US_Open;
-DROP TABLE Masters;
-DROP TABLE PGA_Championship;
-DROP TABLE Open_Championship;
-
 
 CREATE TABLE US_Open
 (

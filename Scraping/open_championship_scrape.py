@@ -10,7 +10,7 @@ from selenium import webdriver
 
 
 class App:
-    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='', password=''):
+    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='', password=''):  #Enter your own email and password and change the path to your destination
         if not os.path.exists(path):
             os.mkdir(path)
 
@@ -22,7 +22,7 @@ class App:
         self.second_url = "&tournament=British+Open&player=&tour=Majors&submit=go"
         self.real_url = "https://www.golfstats.com/"
         self.driver = webdriver.Chrome(
-            '/Users/dannymorgan/Downloads/chromedriver')
+            '/Users/dannymorgan/Downloads/chromedriver')  # Change this path to your own chromedriver path
         self.driver.get(self.real_url)
         self.workbook = Workbook(os.path.join(self.path, 'test_file5.xlsx'))
 
@@ -49,7 +49,7 @@ class App:
 
     def go_to_masters(self):
         workbook = xw.Workbook(os.path.join(
-            self.path, 'open_championship_stats_2010_to_2019.xlsx'))
+            self.path, 'open_championship_stats_2010_to_2019.xlsx'))  # Change this file name to save the file under your desired name
         worksheet = workbook.add_worksheet()
         i = -1
         x = 1
@@ -82,7 +82,7 @@ class App:
         while i < len(arr):
             worksheet.write(0, i, arr[i])
             i += 1
-            #Change this to select your own header names instead of scraping them
+            
 
     def next_year(self, worksheet, row):
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
