@@ -9,7 +9,8 @@ import xlsxwriter as xw
 
 
 class App:
-    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='', password=''):  #Enter your own email and password and change the path to your destination
+    # Enter your own email and password and change the path to your destination
+    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='djmorgan2412@gmail.com', password='dmo1993'):
         if not os.path.exists(path):
             os.mkdir(path)
 
@@ -18,7 +19,7 @@ class App:
         self.password = password
         self.years = [str(i) for i in range(2010, 2020)]
         self.first_url = "https://www.golfstats.com/search/?box="
-        self.second_url = "&tournament=PGA+Championship&player=&tour=Majors&submit=go"
+        self.second_url = "&tournament=U.S.+Open&player=&tour=Majors&submit=go"
         self.real_url = "https://www.golfstats.com/"
         self.driver = webdriver.Chrome(
             '/Users/dannymorgan/Downloads/chromedriver')  # Change this path to your own chromedriver path
@@ -48,19 +49,19 @@ class App:
 
     def go_to_masters(self):
         workbook = xw.Workbook(os.path.join(
-            self.path, 'pga_stats_2010_to_2019.xlsx'))  # Change this file name to save the file under your desired name
+            self.path, 'us_open_stats_2010_to_2019_223456.xlsx'))  # Change this file name to save the file under your desired name
         worksheet = workbook.add_worksheet()
         i = -1
         x = 1
         self.driver.get(self.first_url + self.years[i] + self.second_url)
         self.select_header(worksheet, workbook)
-        while i > -11:
-            self.driver.get(self.first_url + self.years[i] + self.second_url)
-            i -= 1
-            sleep(1)
-            self.next_year(worksheet, x)
-            sleep(1)
-            x += 45
+        # while i > -11:
+        self.driver.get(self.first_url + '2000' + self.second_url)
+            # i -= 1
+            # sleep(1)
+        self.next_year(worksheet, x)
+        sleep(1)
+        x += 45
         workbook.close()
 
     def select_header(self, worksheet, workbook):
@@ -81,14 +82,14 @@ class App:
         while i < len(arr):
             worksheet.write(0, i, arr[i])
             i += 1
-            
+            #Change this to select your own header names instead of scraping them
 
     def next_year(self, worksheet, row):
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         all_stats = soup.find_all('tr')
 
         k = 6
-        while k < 51:
+        while k < 70:
             col = 0
             for stat in all_stats[k]:
                 word = str(stat)
