@@ -24,7 +24,6 @@ class App:
         self.driver = webdriver.Chrome(
             '/Users/dannymorgan/Downloads/chromedriver')  # Change this path to your own chromedriver path
         self.driver.get(self.real_url)
-        self.workbook = Workbook(os.path.join(self.path, 'test_file5.xlsx'))
 
         sleep(3)
         self.login()

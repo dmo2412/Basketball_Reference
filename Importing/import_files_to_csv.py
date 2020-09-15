@@ -13,7 +13,7 @@ class ImportExcelToCSV:
         # self.import_fairways_hit()
         # self.import_scrambling()
         # self.import_driving_distance()
-        self.import_masters_odds()
+        # self.import_masters_odds()
 
     def import_masters(self):
         self.data_xls = pd.read_excel('masters_stats_2010_to_2019.xlsx', 'Sheet1', index_col=None) #Change file name to match file name in Scraping/masters_scrape.py
