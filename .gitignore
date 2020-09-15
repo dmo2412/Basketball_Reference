@@ -12,3 +12,11 @@ testing2.db
 usopen.xlsx
 usopentest.csv
 /Importing/import_masters_data.py
+/SQL/alter_tables.sql
+/SQL/create_masters.sql
+/SQL/masters_info.txt
+/SQL/stats.sql
+/SQL/us_open_finish.sql
+/SQL/us_open_info.txt
+/SQL/winners.txt
+

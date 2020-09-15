@@ -13,6 +13,7 @@ class ImportExcelToCSV:
         # self.import_fairways_hit()
         # self.import_scrambling()
         # self.import_driving_distance()
+        self.import_masters_odds()
 
     def import_masters(self):
         self.data_xls = pd.read_excel('masters_stats_2010_to_2019.xlsx', 'Sheet1', index_col=None) #Change file name to match file name in Scraping/masters_scrape.py
@@ -30,6 +31,10 @@ class ImportExcelToCSV:
         self.data_xls = pd.read_excel('open_championship_stats_2010_to_2019.xlsx', 'Sheet1', index_col=None) #Change file name to match file name in Scraping/open_championship_scrape.py
         self.data_xls.to_csv('Majors/openchampionship.csv', encoding='utf-8')
     
+    def import_masters_odds(self):
+        self.data_xls = pd.read_excel('Excel/masters_odds.xlsx', 'Sheet1', index_col = None, header=None)
+        self.data_xls.to_csv('Odds/masters_odds.csv', encoding='utf-8')
+
     def import_greens_hit(self):
         string = 'greens_hit_'
         for year in self.years:
