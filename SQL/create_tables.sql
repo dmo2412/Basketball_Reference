@@ -155,4 +155,4 @@ CREATE TABLE masters_odds (
 
 
 
-\copy masters_odds from '/Users/dannymorgan/Desktop/Masters_stats/Importing/Odds/masters_odds.csv' DELIMITER ',' CSV HEADER;
+-- \copy masters_odds from '/Users/dannymorgan/Desktop/Masters_stats/Importing/Odds/masters_odds.csv' DELIMITER ',' CSV HEADER;

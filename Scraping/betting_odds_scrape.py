@@ -8,7 +8,7 @@ from xlsxwriter import Workbook
 import xlsxwriter as xw
 
 class App:
-    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats'):
+    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats/Importing/Excel'):
         self.path = path
         self.url = "https://www.sportsoddshistory.com/golf-champs/"
         self.driver = webdriver.Chrome('/Users/dannymorgan/Downloads/chromedriver')
@@ -28,49 +28,27 @@ class App:
         arr = []
         while i < 70:
             word = odds[i].text
-            item = str(word)
-            try:
-                float(item)
-                # continue
-            except Exception:
-                print(item)
 
             if i % 7 != 6:
                 arr.append(word)
             i += 1
-        x = 0
-        # for chars in arr:
-        #     # if str(word) != '\xa0\xa0':
-        #     print("_________")
-        #     print(str(chars))
-        #     print(x)
-        #     print("_________")
-        #     print("")
-        #     print("")
-        #     x += 1
+       
+        x = 0 
         row = 0
-        col = 0
         nums = [num for num in range(0,6)]
-        # print(nums)
-        j = 0
-        # for el in arr:
-        #     print(el)
-        #     print(j)
-        #     j += 1
-
-        # while x < len(arr):
-        #     for num in nums:
-        #         if num != 1:
-        #             try:
-        #                 ele = float(arr[num + x])
-        #                 worksheet.write_number(row, num, ele)
-        #             except ValueError:
-        #                 worksheet.write(row, num, 0)
-        #             # print(ele)
-        #         else:
-        #             worksheet.write(row, num, arr[num + x])
-        #     x += 6
-        #     row += 1
+       
+        while x < len(arr):
+            for num in nums:
+                if num != 1:
+                    try:
+                        ele = float(arr[num + x])
+                        worksheet.write_number(row, num, ele)
+                    except ValueError:
+                        worksheet.write(row, num, 0)
+                else:
+                    worksheet.write(row, num, arr[num + x])
+            x += 6
+            row += 1
         
 
 

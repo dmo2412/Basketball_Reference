@@ -28,8 +28,7 @@ class App:
         worksheet = self.workbook.add_worksheet(year)
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         odd_stats = soup.find_all('td')
-        even_stats = soup.find_all('tr', class_="")
-
+        
         i = 3
         row = 0
         col1 = 0

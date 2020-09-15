@@ -8,7 +8,7 @@ from xlsxwriter import Workbook
 import xlsxwriter as xw
 
 class App:
-    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats', email='', password=''):  #Enter your own email and password and change the path to your destination
+    def __init__(self, path='/Users/dannymorgan/Desktop/Masters_stats/Importing/Excel', email='', password=''):  #Enter your own email and password and change the path to your destination
         if not os.path.exists(path):
             os.mkdir(path)
 
@@ -21,7 +21,6 @@ class App:
         self.real_url = "https://www.golfstats.com/"
         self.driver = webdriver.Chrome('/Users/dannymorgan/Downloads/chromedriver') #Change this path to your own chromedriver path
         self.driver.get(self.real_url)
-        self.workbook = Workbook(os.path.join(self.path, 'test_file5.xlsx'))
 
         sleep(3)
         self.login()
@@ -44,7 +43,7 @@ class App:
 
 
     def go_to_masters(self):
-        workbook = xw.Workbook(os.path.join(self.path, 'masters_stats_2010_to_2019_test.xlsx')) #Change this file name to save the file under your desired name
+        workbook = xw.Workbook(os.path.join(self.path, 'masters_stats_2010_to_2019_testinggggg.xlsx')) #Change this file name to save the file under your desired name
         worksheet = workbook.add_worksheet()
         i = -1
         x = 1

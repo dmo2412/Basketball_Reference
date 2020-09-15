@@ -2,8 +2,6 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from time import sleep
 import os
-import requests
-import shutil
 from xlsxwriter import Workbook
 import xlsxwriter as xw
 
@@ -21,25 +19,17 @@ class App:
         sleep(3)
         self.next_year()
         self.workbook.close()
-        # https://www.pgatour.com/content/pgatour/stats/stat.130.y2019.html
-        # https://www.pgatour.com/content/pgatour/stats/stat.104.y2019.html
-
+    
     def scrape(self, year):
         worksheet = self.workbook.add_worksheet(year)
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         odd_stats = soup.find_all('td')
-        even_stats = soup.find_all('tr', class_="")
 
         i = 3
         row = 0
         col1 = 0
         col2 = 1
         while i < 1000:
-            # print(i)
-            # print(odd_stats[i])
-            # print(" ")
-            # print("_____________")
-            # i += 7
             rank = odd_stats[i]
             word1 = str(rank)
             rank_start = word1.find('">') + 2
@@ -71,7 +61,6 @@ class App:
             self.driver.get(self.first_url + i + self.second_url)
             sleep(4)
             self.scrape(string)
-            # break
             sleep(3)
 
 
