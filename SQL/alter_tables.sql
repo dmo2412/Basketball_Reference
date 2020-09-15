@@ -1,8 +1,0 @@
-ALTER TABLE scrambling19
-DROP COLUMN rem;
-ALTER TABLE greens_hit19
-DROP COLUMN rem;
-ALTER TABLE distance19
-DROP COLUMN rem;
-ALTER TABLE fairways_hit19
-DROP COLUMN rem;
