@@ -32,16 +32,18 @@ picture of all of the available data.
                  29.1 |                  20.3 |             6.3 |       17.9
 
 
-## Instructions to run Webscrape: Hint(For use of golfstats.com, a username and password is required on the site in order to view the complete information)
+## Instructions to run Webscrape: 
+#### Hint(For use of golfstats.com, a username and password is required on the site in order to view the complete information)
   1) git clone https://github.com/dmo2412/PGA_stat_tracker
-  2) Change path, enter username and email
-  3) Change Chromedriver path to your chromedriver path
-  4) Terminal: python3 (filename.py)
+  2) Change path, enter username and email.
+  3) Change Chromedriver path to your chromedriver path.
+  4) Adjust sleep timers to desired time to optimize speed.
+  5) Terminal: python3 (filename.py)
 
 ## Instructions to Import and convert to CSV:
-  1) Uncomment out method to run in init
+  1) Uncomment out method to run in init.
   2) Change filename to the name of your excel file.
-  3) Enter output location and name for CSV
+  3) Enter output location and name for CSV.
   4) python3 (filename.py)
   
 ## Instructions for Adding CSV to sql database:
