@@ -1,8 +1,20 @@
+![](https://img.shields.io/github/stars/dmo2412/PGA_stat_tracker)
+- [PGA_stat_tracker](#pga_stat_tracker)
+  - [Tech Stack](#tech-stack)
+  - [Webscraping:](#webscraping)
+  - [Importing:](#importing)
+  - [PostgreSQL:](#postgresql)
+  - [Instructions to run Webscrape:](#instructions-to-run-webscrape)
+      - [Hint(For use of golfstats.com, a username and password is required on the site in order to view the complete information)](#hintfor-use-of-golfstatscom-a-username-and-password-is-required-on-the-site-in-order-to-view-the-complete-information)
+  - [Instructions to Import and convert to CSV:](#instructions-to-import-and-convert-to-csv)
+  - [Instructions for Adding CSV to sql database:](#instructions-for-adding-csv-to-sql-database)
+     (#hintfor-use-of-golfstatscom-a-username-and-password-is-required-on-the-site-in-order-to-view-the-complete-information)
+  - [Instructions to Import and convert to CSV:](#instructions-to-import-and-convert-to-csv)
+  - [Instructions for Adding CSV to sql database:](#instructions-for-adding-csv-to-sql-database)
 # PGA_stat_tracker
 PGA_stat_tracker scrapes all of the available information from [golfstats.com](golfstats.com) on all four pga golf majors, as well as many relevant stats from [pgatour.com](pgatour.com), and archived betting odds from [sportsoddshistory.com](sportsoddshistory.com). 
 It then writes the data to excel, uses pandas to convert the excel file to CSV and add's the CSV to a PostgreSQL database for querying in order to give the clearest
 picture of all of the available data.
-
 
 ## Tech Stack
 * Python 
