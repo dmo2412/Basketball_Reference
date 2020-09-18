@@ -3,7 +3,7 @@ PGA_stat_tracker scrapes all of the available information from [golfstats.com](g
 It then writes the data to excel, uses pandas to convert the excel file to CSV and add's the CSV to a PostgreSQL database for querying in order to give the clearest
 picture of all of the available data.
 
-https://img.shields.io/static/v1?label=<LABEL>&message=<MESSAGE>&color=<COLOR>
+https://img.shields.io/static/v1?label=<LABEL>&message=<Picture>&color=<Red>
 
 ## Tech Stack
 * Python 
